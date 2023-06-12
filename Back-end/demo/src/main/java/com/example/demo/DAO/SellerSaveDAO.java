@@ -8,7 +8,7 @@ import com.example.demo.Model.Seller;
 
 public class SellerSaveDAO {
     @NotNull(message = "O campo nome é obrigatório")
-    @Size(min = 5, max = 100, message = "O campo nome deve ter entre 3 e 100 caracteres")
+    @Size(min = 5, max = 100, message = "O campo nome deve ter entre 5 e 100 caracteres")
     private String name;
 
     @NotNull(message = "O campo salario é obrigatório")
