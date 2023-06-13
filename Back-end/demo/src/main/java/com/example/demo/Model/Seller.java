@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 import com.example.demo.DAO.SellerDAO;
 
-@Entity
+@Entity //*declara uma tabela no banco de dados 
 @Table(name = "tbl_sellers")
 public class Seller {
    @Id
