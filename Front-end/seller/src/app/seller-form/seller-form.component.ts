@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-seller-form',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./seller-form.component.css']
 })
 export class SellerFormComponent {
+
 
 }

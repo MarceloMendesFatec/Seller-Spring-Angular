@@ -11,6 +11,8 @@ import { SellersComponent } from './sellers/sellers.component';
 import { SellerFormComponent } from './seller-form/seller-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GenderPipe } from './Pipes/GenderPipe';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { GenderPipe } from './Pipes/GenderPipe';
     HomeComponent,
     SellersComponent,
     SellerFormComponent,
-    GenderPipe
+    GenderPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,9 @@ import { GenderPipe } from './Pipes/GenderPipe';
     NgbModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

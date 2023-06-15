@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="d-flex row justify-content-center mt-3">
+  <div class="d-flex row justify-content-center mt-3 " *ngIf="!showForm">
     <button class="btn btn-secondary col-2" (click)="showForm = true">
       Novo Vendedor
      <i class="bi bi-plus-circle ms-3" style="font-size: 1.3rem"></i>
