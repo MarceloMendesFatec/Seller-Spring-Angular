@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { SellersServiceService } from '../Service/sellers-service.service';
+import { Seller } from '../Interface/Seller';
 @Component({
   selector: 'app-sellers',
   templateUrl: './sellers.component.html',
@@ -7,4 +8,21 @@ import { Component } from '@angular/core';
 })
 export class SellersComponent {
 
+  sellersList: Seller[] = [];
+
+  constructor(private sellersService: SellersServiceService) { }
+
+  ngOnInit(): void {
+    this.loadSellers();
+  }
+
+
+  loadSellers(){
+    this.sellersService.getSellers().subscribe({
+      next: (sellers) => {
+        this.sellersList = sellers;
+      }
+    })
+
+  }
 }
