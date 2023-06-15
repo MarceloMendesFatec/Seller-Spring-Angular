@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { SellersComponent } from './sellers/sellers.component';
 import { SellerFormComponent } from './seller-form/seller-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GenderPipe } from './Pipes/GenderPipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,14 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     HomeComponent,
     SellersComponent,
-    SellerFormComponent
+    SellerFormComponent,
+    GenderPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

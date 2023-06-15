@@ -9,6 +9,8 @@ import { Seller } from '../Interface/Seller';
 export class SellersComponent {
 
   sellersList: Seller[] = [];
+  showForm = false;
+
 
   constructor(private sellersService: SellersServiceService) { }
 
@@ -16,6 +18,9 @@ export class SellersComponent {
     this.loadSellers();
   }
 
+  closeForm() {
+    this.showForm = false;
+  }
 
   loadSellers(){
     this.sellersService.getSellers().subscribe({
