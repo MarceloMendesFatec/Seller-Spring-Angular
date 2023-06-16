@@ -69,7 +69,7 @@ public class SellerSaveDAO {
         Seller seller = new Seller();
         seller.setName(name);
         seller.setSalary(salary);
-        seller.setBonus(bonus);
+        seller.setBonus(bonus / 100);
         seller.setGender(gender);
         return seller;
     }

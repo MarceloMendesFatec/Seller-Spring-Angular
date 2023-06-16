@@ -31,7 +31,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

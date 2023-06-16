@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SellersServiceService } from '../Service/sellers-service.service';
 import { Seller } from '../Interface/Seller';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-sellers',
   templateUrl: './sellers.component.html',
@@ -8,14 +9,18 @@ import { Seller } from '../Interface/Seller';
 })
 export class SellersComponent {
 
+  seller: Seller = {} as Seller;
+  deletedSeller: Seller = {} as Seller;
   sellersList: Seller[] = [];
   showForm = false;
 
 
-  constructor(private sellersService: SellersServiceService) { }
+  constructor(private sellersService: SellersServiceService,
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.loadSellers();
+    //setInterval(() => this.loadSellers(), 5000);
   }
 
   closeForm() {
@@ -30,4 +35,7 @@ export class SellersComponent {
     })
 
   }
+
+
+
 }
