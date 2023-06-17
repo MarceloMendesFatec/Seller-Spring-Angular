@@ -19,17 +19,16 @@ export class SellerFormComponent {
   saveEmitter =  new EventEmitter();
 
 
-  constructor(private sellersService: SellersServiceService,
-              private formBuilder: FormBuilder) {
+  constructor(private sellersService: SellersServiceService, private formBuilder: FormBuilder) {
     this.formGroupSellers = this.formBuilder.group({
-      id : {value: null, disabled: true},
-      name: ['', Validators.required],
-      salary : ['', Validators.required],
-      bonus : ['', Validators.required],
-      genero : ['', Validators.required]
-
-    })
+      id: { value: null, disabled: true },
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      salary: ['', Validators.required],
+      bonus: ['', Validators.required],
+      gender: ['', Validators.required]
+    });
   }
+
 
   save() {
     if (this.formGroupSellers.valid) {
@@ -46,4 +45,9 @@ export class SellerFormComponent {
     }
   }
 
+
+  get sfgName() { return this.formGroupSellers.get('name'); }
+  get sfgSalary() { return this.formGroupSellers.get('salary'); }
+  get sfgBonus() { return this.formGroupSellers.get('bonus'); }
+  get sfgGender() { return this.formGroupSellers.get('gender'); }
 }

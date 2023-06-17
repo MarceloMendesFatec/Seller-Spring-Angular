@@ -1,7 +1,8 @@
 <div class="container col-6">
-  <form [formGroup]="formGroupSellers">
+  <form [formGroup]="formGroupSellers" #ngFormSellers="ngForm">
+
     <div class="mb-3 row">
-      <div class="col-6">
+      <div class=" offset-3 col-6">
         <label for="nome" class="form-label">Nome</label>
         <input
           type="text"
@@ -9,11 +10,19 @@
           id="nome"
           formControlName="name"
         />
+            <div *ngIf="ngFormSellers.submitted">
+            <small *ngIf="sfgName?.errors?.['required']" class="form-text text-danger">*Nome é requirido</small>
+            <small *ngIf="sfgName?.errors?.['minlength']" class="form-text text-danger">*Tamanho minimo 3 caracteres</small>
       </div>
+      </div>
+
+
+
     </div>
 
+
     <div class="mb-3 row">
-      <div class="col-6">
+      <div class="offset-3 col-6">
         <label for="nome" class="form-label">Salario</label>
         <div class="input-group">
           <span class="input-group-text" id="inputGroupPrepend1">$</span>
@@ -24,8 +33,16 @@
             formControlName="salary"
           />
         </div>
+         <div *ngIf="ngFormSellers.submitted">
+            <small *ngIf="sfgSalary?.errors?.['required']" class="form-text text-danger">*Salario é requirido</small>
       </div>
-      <div class="col-6">
+      </div>
+
+
+    </div>
+
+    <div class="mb-3 row">
+      <div class=" offset-3 col-6">
         <div class="mb-3">
           <label for="sobrenome" class="form-label">Bonus</label>
           <div class="input-group">
@@ -38,24 +55,38 @@
             />
           </div>
         </div>
+
+        <div *ngIf="ngFormSellers.submitted">
+            <small *ngIf="sfgBonus?.errors?.['required']" class="form-text text-danger">*Bonus é requirido</small>
+       </div>
+
+
       </div>
     </div>
 
-    <div class="mb-3 col-3">
+    <div class="row">
+        <div class="   offset-3 mb-3 col-3">
       <label for="genero" class="form-label">Gênero</label>
       <select
         class="form-select"
         id="genero"
         name="genero"
-        formControlName="genero"
-        [(ngModel)]="seller.gender"
+        formControlName="gender"
+        required
       >
+        <option value="" disabled selected>Escolha um</option>
         <option value="1">Masculino</option>
         <option value="2">Feminino</option>
       </select>
+
+      <div *ngIf="ngFormSellers.submitted">
+            <small *ngIf="sfgGender?.errors?.['required']" class="form-text text-danger">*Genero  é requirido</small>
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-primary col-4"  (click)="save()">
+
+    </div>
+    <button type="submit" class=" offset-3 btn btn-primary col-4"  (click)="save()">
       Enviar
     </button>
   </form>
