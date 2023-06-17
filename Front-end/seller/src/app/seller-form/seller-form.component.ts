@@ -42,6 +42,13 @@ export class SellerFormComponent {
       });
 
       this.seller = {} as Seller;
+      // Limpar o formulário após salvar os dados
+      this.formGroupSellers.reset();
+      // Definir o estado de erro como null para cada campo individualmente
+      // Definir o estado de erro como null para cada campo individualmente
+      Object.keys(this.formGroupSellers.controls).forEach((key: string) => {
+        this.formGroupSellers.get(key)?.setErrors(null);
+      });
     }
   }
 
