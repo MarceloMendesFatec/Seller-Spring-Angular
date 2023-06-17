@@ -47,7 +47,7 @@
   </div>
   <div *ngIf="showForm">
     <button class="btn btn-secondary" (click)="closeForm()">Fechar  </button>
-    <app-seller-form></app-seller-form>
+    <app-seller-form (saveEmitter)="loadSellers($event)"></app-seller-form>
 </div>
 
 </div>

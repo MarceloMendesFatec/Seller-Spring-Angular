@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellersServiceService } from '../Service/sellers-service.service';
 import { Seller } from '../Interface/Seller';
+import { EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-seller-form',
   templateUrl: './seller-form.component.html',
@@ -13,34 +15,35 @@ export class SellerFormComponent {
   seller : Seller = {} as Seller;
   sellers: Seller[] = [];
 
+  @Output()
+  saveEmitter =  new EventEmitter();
+
 
   constructor(private sellersService: SellersServiceService,
               private formBuilder: FormBuilder) {
     this.formGroupSellers = this.formBuilder.group({
       id : {value: null, disabled: true},
       name: ['', Validators.required],
-      salario : ['', Validators.required],
+      salary : ['', Validators.required],
       bonus : ['', Validators.required],
       genero : ['', Validators.required]
 
     })
   }
 
-    save() {
-      console.log("teste");
-      if (this.formGroupSellers.valid) {
-        Object.assign(this.seller, this.formGroupSellers.value)
+  save() {
+    if (this.formGroupSellers.valid) {
+      Object.assign(this.seller, this.formGroupSellers.value);
 
-        console.log(this.seller);
-        this.sellersService.createSeller(this.seller).subscribe({
-          next: data => {
-            this.seller = data;
-          }
-        });
-        // Reinicie o objeto this.seller
-        this.seller = {} as Seller;
+      this.sellersService.createSeller(this.seller).subscribe({
+        next: data => {
+          this.seller = data;
+          this.saveEmitter.emit(true); // Emitir o evento com o valor true
+        }
+      });
 
-      }
+      this.seller = {} as Seller;
     }
+  }
 
 }

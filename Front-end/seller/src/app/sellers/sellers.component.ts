@@ -19,7 +19,7 @@ export class SellersComponent {
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.loadSellers();
+    this.loadSellers(true);
     //setInterval(() => this.loadSellers(), 5000);
   }
 
@@ -27,7 +27,7 @@ export class SellersComponent {
     this.showForm = false;
   }
 
-  loadSellers(){
+  loadSellers(save : boolean ) {
     this.sellersService.getSellers().subscribe({
       next: (sellers) => {
         this.sellersList = sellers;
