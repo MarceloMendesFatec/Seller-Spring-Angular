@@ -28,9 +28,8 @@
               <td>{{ seller.bonus | percent }}</td>
               <td>{{ seller.gender | gender }}</td>
               <td>
-               <i class="bi bi-pencil me-4"></i>
+                <i class="bi bi-pencil me-4"></i>
                 <i class="bi bi-trash3" (click)="delete(seller)"></i>
-
               </td>
             </tr>
           </tbody>
@@ -38,18 +37,14 @@
       </div>
     </div>
   </div>
-  <div class="d-flex row justify-content-center mt-3 " *ngIf="!showForm">
+  <div class="d-flex row justify-content-center mt-3" *ngIf="!showForm">
     <button class="btn btn-secondary col-2" (click)="showForm = true">
       Novo Vendedor
-     <i class="bi bi-plus-circle ms-3" style="font-size: 1.3rem"></i>
-
+      <i class="bi bi-plus-circle ms-3" style="font-size: 1.3rem"></i>
     </button>
   </div>
   <div *ngIf="showForm">
-    <button class="btn btn-secondary" (click)="closeForm()">Fechar  </button>
+    <button class="btn btn-secondary" (click)="closeForm()">Fechar</button>
     <app-seller-form (saveEmitter)="loadSellers($event)"></app-seller-form>
+  </div>
 </div>
-
-</div>
-
-

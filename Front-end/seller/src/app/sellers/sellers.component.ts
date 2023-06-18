@@ -22,6 +22,7 @@ export class SellersComponent {
   showForm = false;
 
 
+  showFormAnimation = false;
 
   constructor(private sellersService: SellersServiceService,
               private modalService: NgbModal) { }
@@ -35,6 +36,7 @@ export class SellersComponent {
     this.showForm = false;
   }
 
+  
   loadSellers(save: boolean) {
     // Chama o serviço para obter a lista de vendedores
     this.sellersService.getSellers().subscribe({
