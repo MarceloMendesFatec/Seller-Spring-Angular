@@ -1,5 +1,7 @@
 <div class="container col-6">
+
   <form [formGroup]="formGroupSellers" #ngFormSellers="ngForm">
+
     <div class="mb-3 row">
       <div class="offset-3 col-6">
         <label for="nome" class="form-label">Nome</label>
@@ -10,7 +12,7 @@
           formControlName="name"
           [ngClass]="{
             'is-invalid': ngFormSellers.submitted && sfgName?.errors,
-            'border-danger': ngFormSellers.submitted && sfgName?.errors
+            'border-danger': ngFormSellers.submitted && sfgName?.errors,
           }"
         />
 
@@ -23,7 +25,7 @@
           <small
             *ngIf="sfgName?.errors?.['minlength']"
             class="form-text text-danger"
-            >*Tamanho minimo 3 caracteres</small
+            >*Tamanho minimo 5 caracteres</small
           >
         </div>
       </div>
@@ -84,7 +86,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="mb-3 d-flex flex-row">
       <div class="offset-3 mb-3 col-3">
         <label for="genero" class="form-label">Gênero</label>
         <select
@@ -111,13 +113,17 @@
           >
         </div>
       </div>
-    </div>
-    <button
+
+      <button
       type="submit"
-      class="offset-3 btn btn-primary col-4"
+      class="offset-2 btn btn-primary col-4 p-1 align-items-center"
       (click)="save()"
-    >
+      >
       Enviar
     </button>
+    </div>
+
+
   </form>
+
 </div>

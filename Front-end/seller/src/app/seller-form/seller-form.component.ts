@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellersServiceService } from '../Service/sellers-service.service';
 import { Seller } from '../Interface/Seller';
 import { EventEmitter } from '@angular/core';
@@ -45,12 +45,13 @@ export class SellerFormComponent {
       // Limpar o formulário após salvar os dados
       this.formGroupSellers.reset();
       // Definir o estado de erro como null para cada campo individualmente
-      // Definir o estado de erro como null para cada campo individualmente
       Object.keys(this.formGroupSellers.controls).forEach((key: string) => {
         this.formGroupSellers.get(key)?.setErrors(null);
       });
     }
   }
+
+
 
 
   get sfgName() { return this.formGroupSellers.get('name'); }

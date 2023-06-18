@@ -9,10 +9,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SellersComponent {
 
+  // Define um objeto vazio do tipo Seller para ser usado como modelo
   seller: Seller = {} as Seller;
+
+  // Define um objeto vazio do tipo Seller para armazenar o vendedor a ser excluído
   deletedSeller: Seller = {} as Seller;
+
+  // Inicializa uma lista vazia de vendedores
   sellersList: Seller[] = [];
+
+  // Define uma flag para controlar a exibição do formulário
   showForm = false;
+
 
 
   constructor(private sellersService: SellersServiceService,
@@ -27,14 +35,32 @@ export class SellersComponent {
     this.showForm = false;
   }
 
-  loadSellers(save : boolean ) {
+  loadSellers(save: boolean) {
+    // Chama o serviço para obter a lista de vendedores
     this.sellersService.getSellers().subscribe({
       next: (sellers) => {
+        // Atualiza a lista de vendedores com os dados recebidos do serviço
         this.sellersList = sellers;
       }
-    })
-
+    });
   }
+
+
+
+
+  delete(seller: Seller) {
+    // Armazena o vendedor que será excluído
+    this.deletedSeller = seller;
+
+    // Chama o serviço para excluir o vendedor pelo ID
+    this.sellersService.deleteSeller(seller.id).subscribe({
+      next: () => {
+        // Atualiza a lista de vendedores removendo o vendedor excluído
+        this.sellersList = this.sellersList.filter(s => s.id !== seller.id);
+      }
+    });
+  }
+
 
 
 
