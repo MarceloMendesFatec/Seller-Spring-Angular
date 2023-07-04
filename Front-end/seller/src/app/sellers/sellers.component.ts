@@ -36,7 +36,7 @@ export class SellersComponent {
     this.showForm = false;
   }
 
-  
+
   loadSellers(save: boolean) {
     // Chama o serviço para obter a lista de vendedores
     this.sellersService.getSellers().subscribe({
@@ -49,18 +49,25 @@ export class SellersComponent {
 
 
 
-
-  delete(seller: Seller) {
+  delete(modal: any, seller: Seller) {
     // Armazena o vendedor que será excluído
     this.deletedSeller = seller;
 
-    // Chama o serviço para excluir o vendedor pelo ID
-    this.sellersService.deleteSeller(seller.id).subscribe({
-      next: () => {
-        // Atualiza a lista de vendedores removendo o vendedor excluído
-        this.sellersList = this.sellersList.filter(s => s.id !== seller.id);
+    // Abre o modal de confirmação
+    this.modalService.open(modal).result.then(
+      (confirm) => {
+        // Verifica se o usuário confirmou a exclusão
+        if (confirm) {
+          // Chama o serviço para excluir o vendedor pelo ID
+          this.sellersService.deleteSeller(seller.id).subscribe({
+            next: () => {
+              // Atualiza a lista de vendedores removendo o vendedor excluído
+              this.sellersList = this.sellersList.filter(s => s.id !== seller.id);
+            }
+          });
+        }
       }
-    });
+    );
   }
 
 

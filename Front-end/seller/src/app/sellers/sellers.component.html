@@ -29,7 +29,7 @@
               <td>{{ seller.gender | gender }}</td>
               <td>
                 <i class="bi bi-pencil me-4" style="cursor: pointer;"></i>
-                <i class="bi bi-trash3" (click)="delete(seller)" style="cursor: pointer;"></i>
+                <i class="bi bi-trash3" (click)="delete(confirmModal,seller)" style="cursor: pointer;"></i>
               </td>
             </tr>
           </tbody>
@@ -48,3 +48,21 @@
     <app-seller-form (saveEmitter)="loadSellers($event)"></app-seller-form>
   </div>
 </div>
+
+
+<ng-template #confirmModal  let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Remover Vendedor</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.close()"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Voce tem certeza que deseja remover o vendedor <span class="text-warning"> <br> "{{deletedSeller.name | uppercase}} "</span>  ?</strong></p>
+            <p>Toda a informação relacionada a este vendedor sera permanentemente removida <br>
+              <span class="text-danger"> <strong>Esta ação nao pode ser desfeita</strong></span>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="modal.close(true)">Confirmar</button>
+            <button type="button" class="btn btn-primary" (click)="modal.close()">Cancelar</button>
+          </div>
+    </ng-template>
