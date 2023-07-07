@@ -59,13 +59,10 @@ export class SellerFormComponent {
   save() {
     // Verifica se o formulário é válido
     if (this.formGroupSellers.valid) {
-
       // Atribui os valores do formulário ao objeto seller
       Object.assign(this.seller, this.formGroupSellers.value);
-
       // Atualiza o vendedor existente
       if (this.seller.id) {
-
         // Chama o serviço para atualizar o vendedor
         this.sellersService.updateSeller(this.seller).subscribe(() => {
           // Emite um evento indicando que o salvamento foi bem-sucedido
@@ -98,7 +95,6 @@ export class SellerFormComponent {
       // Remove as validações dos controles do formulário
       this.clearFormValidators(this.formGroupSellers);
     }
-
     // Limpa a variável de seller
     this.seller = {} as Seller;
   }

@@ -23,9 +23,7 @@ export class SellersComponent {
 
   // Define uma flag para controlar a exibição do formulário
   showForm: boolean = false;
-  isEditing: boolean = false;
-
-  showFormAnimation = false;
+  
 
 
 
@@ -58,11 +56,11 @@ export class SellersComponent {
   edit(seller: Seller) {
     this.seller = seller;
     this.showForm = true;
-    this.isEditing = true;
+
   }
 
 
-  
+
 
 
   delete(modal: any, seller: Seller) {
