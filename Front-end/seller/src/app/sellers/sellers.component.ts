@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SellersServiceService } from '../Service/sellers-service.service';
 import { Seller } from '../Interface/Seller';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ViewChild } from '@angular/core';
+import { SellerFormComponent } from '../seller-form/seller-form.component';
+
 @Component({
   selector: 'app-sellers',
   templateUrl: './sellers.component.html',
@@ -19,22 +22,22 @@ export class SellersComponent {
   sellersList: Seller[] = [];
 
   // Define uma flag para controlar a exibição do formulário
-  showForm = false;
-
+  showForm: boolean = false;
+  isEditing: boolean = false;
 
   showFormAnimation = false;
 
+
+
   constructor(private sellersService: SellersServiceService,
-              private modalService: NgbModal) { }
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.loadSellers(true);
+
     //setInterval(() => this.loadSellers(), 5000);
   }
 
-  closeForm() {
-    this.showForm = false;
-  }
 
 
   loadSellers(save: boolean) {
@@ -47,6 +50,19 @@ export class SellersComponent {
     });
   }
 
+
+
+
+
+
+  edit(seller: Seller) {
+    this.seller = seller;
+    this.showForm = true;
+    this.isEditing = true;
+  }
+
+
+  
 
 
   delete(modal: any, seller: Seller) {

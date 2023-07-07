@@ -28,7 +28,7 @@
               <td>{{ seller.bonus | percent }}</td>
               <td>{{ seller.gender | gender }}</td>
               <td>
-                <i class="bi bi-pencil me-4" style="cursor: pointer;"></i>
+                <i class="bi bi-pencil me-4" (click)="edit(seller)" style="cursor: pointer;"></i>
                 <i class="bi bi-trash3" (click)="delete(confirmModal,seller)" style="cursor: pointer;"></i>
               </td>
             </tr>
@@ -44,12 +44,17 @@
     </button>
   </div>
   <div *ngIf="showForm">
-    <button class="btn btn-secondary" (click)="closeForm()">Fechar</button>
-    <app-seller-form (saveEmitter)="loadSellers($event)"></app-seller-form>
+    <button class="btn btn-secondary" (click)="showForm = false">Fechar</button>
+    <app-seller-form  [seller]="seller"  (saveEmitter)="loadSellers($event)"></app-seller-form>
   </div>
 </div>
 
 
+
+
+
+
+<!--MODAL-->
 <ng-template #confirmModal  let-modal>
         <div class="modal-header">
             <h5 class="modal-title">Remover Vendedor</h5>

@@ -23,8 +23,8 @@ export class SellersServiceService {
     return this.http.post<Seller>("http://localhost:8080/seller", seller);
   }
 
-  updateSeller(id: number, seller: Seller): Observable<Seller> {
-    return this.http.put<Seller>(`http://localhost:8080/seller/${id}`, seller);
+  updateSeller(seller: Seller): Observable<Seller> {
+    return this.http.put<Seller>(`http://localhost:8080/seller/${seller.id}`, seller);
   }
 
   deleteSeller(id: number): Observable<Seller> {
