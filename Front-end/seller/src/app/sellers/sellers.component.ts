@@ -23,7 +23,7 @@ export class SellersComponent {
 
   // Define uma flag para controlar a exibição do formulário
   showForm: boolean = false;
-  
+
 
 
 
@@ -83,8 +83,6 @@ export class SellersComponent {
       }
     );
   }
-
-
-
+//some codes ..
 
 }
