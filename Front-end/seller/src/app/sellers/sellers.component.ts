@@ -89,6 +89,6 @@ export class SellersComponent {
       }
     );
   }
-//some codes ..
+  //some codes ..
 
 }

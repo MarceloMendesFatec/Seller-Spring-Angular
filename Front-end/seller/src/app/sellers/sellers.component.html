@@ -12,23 +12,23 @@
         <table class="rounded table table-dark table-hover">
           <thead>
             <tr>
-              <th>#</th>
+              <th class="d-none d-md-table-cell" >#</th>
               <th>Nome</th>
               <th>Salario</th>
-              <th>Bonus</th>
-              <th>Genero</th>
+              <th class="d-none d-md-table-cell">Bonus</th>
+              <th class="d-none d-sm-table-cell">Genero</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let seller of sellersList">
-              <td>{{ seller.id }}</td>
+              <td class="d-none d-md-table-cell">{{ seller.id }}</td>
               <td>{{ seller.name }}</td>
               <td>{{ seller.salary | currency : "BRL" }}</td>
-              <td>{{ seller.bonus | percent }}</td>
-              <td>{{ seller.gender | gender }}</td>
+              <td class="d-none d-md-table-cell">{{ seller.bonus | percent }}</td>
+              <td class="d-none d-sm-table-cell">{{ seller.gender | gender }}</td>
               <td>
-                <i class="bi bi-pencil me-4" (click)="edit(seller)" style="cursor: pointer;"></i>
+                <i class="bi bi-pencil me-3" (click)="edit(seller)" style="cursor: pointer;"></i>
                 <i class="bi bi-trash3" (click)="delete(confirmModal,seller)" style="cursor: pointer;"></i>
               </td>
             </tr>
@@ -37,14 +37,15 @@
       </div>
     </div>
   </div>
-  <div class="d-flex row justify-content-center mt-3" *ngIf="!showForm">
-    <button class="btn btn-secondary col-2" (click)="showForm = true">
-      Novo Vendedor
-      <i class="bi bi-plus-circle ms-3" style="font-size: 1.3rem"></i>
-    </button>
-  </div>
-  <div *ngIf="showForm">
+ <div class="d-flex row justify-content-center mt-3" *ngIf="!showForm">
+  <button class="btn btn-secondary col-12 col-md-2 d-flex align-items-center" (click)="showForm = true" style="width: 150px;">
+    Novo Vendedor
+    <i class="bi bi-plus-circle ms-auto" style="font-size: 1.3rem"></i>
+  </button>
+</div>
 
+
+  <div *ngIf="showForm">
     <app-seller-form  [seller]="seller"  (saveEmitter)="loadSellers($event)" ></app-seller-form>
   </div>
 </div>
