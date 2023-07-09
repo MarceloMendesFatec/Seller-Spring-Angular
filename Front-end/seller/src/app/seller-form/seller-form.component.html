@@ -122,3 +122,15 @@
     </div>
   </form>
 </div>
+
+
+<ng-template #successModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Sucesso!</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body text-center">
+    <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+    <p class="mt-3">O vendedor foi salvo com exito e nenhum problema foi encontrado.</p>
+  </div>
+</ng-template>

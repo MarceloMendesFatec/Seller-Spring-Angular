@@ -1,9 +1,10 @@
-import { Component, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellersServiceService } from '../Service/sellers-service.service';
 import { Seller } from '../Interface/Seller';
 import { EventEmitter } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-seller-form',
@@ -28,10 +29,10 @@ export class SellerFormComponent {
   @Output()
   saveEmitter = new EventEmitter();
 
-
+  @ViewChild('successModal') successModal: any;
 
   // Construtor do componente
-  constructor(private sellersService: SellersServiceService, private formBuilder: FormBuilder) {
+  constructor(private sellersService: SellersServiceService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     // Inicialização do formulário de vendedores
     this.formGroupSellers = this.formBuilder.group({
       id: { value: null, disabled: true },
@@ -52,23 +53,24 @@ export class SellerFormComponent {
   }
 
   // Função save() que é chamada quando o formulário é enviado
-
-  // save()
-  // Função responsável por salvar os dados do formulário
-
   save() {
     // Verifica se o formulário é válido
     if (this.formGroupSellers.valid) {
+
       // Atribui os valores do formulário ao objeto seller
       Object.assign(this.seller, this.formGroupSellers.value);
+
       // Atualiza o vendedor existente
       if (this.seller.id) {
+
         // Chama o serviço para atualizar o vendedor
         this.sellersService.updateSeller(this.seller).subscribe(() => {
           // Emite um evento indicando que o salvamento foi bem-sucedido
           this.saveEmitter.emit(true);
           // Limpa o formulário
           this.resetForm();
+          // Abre o modal de sucesso
+          this.modalService.open(this.successModal);
         });
       } else {
         // Cria um novo vendedor
@@ -80,6 +82,8 @@ export class SellerFormComponent {
           this.saveEmitter.emit(true);
           // Limpa o formulário
           this.resetForm();
+          // Abre o modal de sucesso
+          this.modalService.open(this.successModal);
         });
       }
 
@@ -95,6 +99,7 @@ export class SellerFormComponent {
       // Remove as validações dos controles do formulário
       this.clearFormValidators(this.formGroupSellers);
     }
+
     // Limpa a variável de seller
     this.seller = {} as Seller;
   }

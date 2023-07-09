@@ -44,6 +44,12 @@ export class SellersComponent {
       next: (sellers) => {
         // Atualiza a lista de vendedores com os dados recebidos do serviço
         this.sellersList = sellers;
+
+        if (save) {
+          // Redefine a variável showForm para false para habilitar o botão "Novo Vendedor"
+          this.showForm = false;
+        }
+
       }
     });
   }

@@ -44,8 +44,8 @@
     </button>
   </div>
   <div *ngIf="showForm">
-    <button class="btn btn-secondary" (click)="showForm = false">Fechar</button>
-    <app-seller-form  [seller]="seller"  (saveEmitter)="loadSellers($event)"></app-seller-form>
+
+    <app-seller-form  [seller]="seller"  (saveEmitter)="loadSellers($event)" ></app-seller-form>
   </div>
 </div>
 
@@ -71,3 +71,6 @@
             <button type="button" class="btn btn-primary" (click)="modal.close()">Cancelar</button>
           </div>
     </ng-template>
+
+
+
